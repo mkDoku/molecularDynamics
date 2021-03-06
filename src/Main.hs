@@ -26,18 +26,18 @@ type Forces = [Force]
 
 type TimeStep = Float
 
-data Ball = Ball
+data Particle = Particle
   { idx :: Index,
     pos :: Position,
     vel :: Velocity
   }
 
-instance Eq Ball where
-  ballA == ballB = idx ballA == idx ballB
+instance Eq Particle where
+  particleA == particleB = idx particleA == idx particleB
 
-type Balls = [Ball]
+type Particles = [Particle]
 
-type Model = Balls
+type Model = Particles
 
 --
 
@@ -68,19 +68,19 @@ toPixels = (* 100.0)
 --
 
 -- |
--- The initial model consists of one ball,
+-- The initial model consists of one particle,
 -- which will be drawn and updated according to `newton`.
 --
--- This results in a ball moving from the center of the
+-- This results in a particle moving from the center of the
 -- screen to the right:
 main1 :: IO ()
 main1 = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
-    initialModel = [Ball 1 (V2 0.0 0.0) (V2 1.0 0.0)]
+    initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0)]
 
     drawingFunc :: Model -> Picture
-    drawingFunc = pictures . drawBalls
+    drawingFunc = pictures . drawParticles
 
     updateFunc :: ViewPort -> Float -> Model -> Model
     updateFunc _ dt = newton dt
@@ -92,24 +92,24 @@ main1 = simulate windowDisplay white simulationRate initialModel drawingFunc upd
 -- |
 
 -- |
--- Convert a list of `Ball` (`Balls`) into
+-- Convert a list of `Particle` (`Particles`) into
 -- a list of `Picture`
-drawBalls :: Balls -> [Picture]
-drawBalls = fmap drawBall
+drawParticles :: Particles -> [Picture]
+drawParticles = fmap drawParticle
 
 -- |
--- Visualize a single ball as blue dot
-drawBall :: Ball -> Picture
-drawBall (Ball _ (V2 x y) _) = translate x' y' $ color (circleSolid dotSize)
+-- Visualize a single particle as blue dot
+drawParticle :: Particle -> Picture
+drawParticle (Particle _ (V2 x y) _) = translate x' y' $ color (circleSolid dotSize)
   where
     x' = toPixels x
     y' = toPixels y
     color = Color (withAlpha 0.8 blue)
 
 -- |
--- Update velocity of one ball
+-- Update velocity of one particle
 -- assuming no acceleration
-newton :: Float -> Balls -> Balls
-newton dt [Ball idx pos vel] = [Ball idx pos' vel]
+newton :: Float -> Particles -> Particles
+newton dt [Particle idx pos vel] = [Particle idx pos' vel]
   where
     pos' = pos + vel ^* dt
