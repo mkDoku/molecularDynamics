@@ -19,14 +19,23 @@ and run the example via:
 stack run
 ```
 
-### `main1`
+### `mainNewton`
 
 ```haskell
 main :: IO ()
-main = main1
+main = mainNewton
 ```
 
 ![A particle moving to the right](./gifs/ball_newton.gif)
+
+### `mainNewton'`
+
+```haskell
+main :: IO ()
+main = mainNewton'
+```
+
+![A particle moving to the right and bouncing of a wall](./gifs/ball_newton_bounce.gif)
 
 
 ## Documentation

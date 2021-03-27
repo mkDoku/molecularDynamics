@@ -12,7 +12,7 @@
 </span><span id="line-12"></span><span class="annot"><a href="Main.html#main"><span class="hs-identifier hs-type">main</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-13"></span><span id="main"><span class="annot"><span class="annottext">main :: IO ()
 </span><a href="Main.html#main"><span class="hs-identifier hs-var hs-var">main</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO ()
-</span><a href="Main.html#main1"><span class="hs-identifier hs-var">main1</span></a></span><span>
+</span><a href="Main.html#mainNewton%27"><span class="hs-identifier hs-var">mainNewton'</span></a></span><span>
 </span><span id="line-14"></span><span>
 </span><span id="line-15"></span><span class="hs-comment">-- * Types and data constructors</span><span>
 </span><span id="line-16"></span><span>
@@ -37,17 +37,17 @@
 </span><a href="Main.html#vel"><span class="hs-identifier hs-var hs-var">vel</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Velocity"><span class="hs-identifier hs-type">Velocity</span></a></span><span>
 </span><span id="line-33"></span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-34"></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679147078"><span class="annot"><span class="hs-identifier hs-type">Eq</span></span><span> </span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span>  </span><span id="local-6989586621679147076"><span class="annot"><span class="annottext">particleA :: Particle
-</span><a href="#local-6989586621679147076"><span class="hs-identifier hs-var">particleA</span></a></span></span><span> </span><span id="local-6989586621679147075"><span class="annot"><span class="annottext">== :: Particle -&gt; Particle -&gt; Bool
-</span><span class="hs-operator hs-var hs-var hs-var hs-var">==</span></span></span><span> </span><span id="local-6989586621679147074"><span class="annot"><span class="annottext">particleB :: Particle
-</span><a href="#local-6989586621679147074"><span class="hs-identifier hs-var">particleB</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Particle -&gt; Index
+</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679147403"><span class="annot"><span class="hs-identifier hs-type">Eq</span></span><span> </span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-36"></span><span>  </span><span id="local-6989586621679147401"><span class="annot"><span class="annottext">particleA :: Particle
+</span><a href="#local-6989586621679147401"><span class="hs-identifier hs-var">particleA</span></a></span></span><span> </span><span id="local-6989586621679147400"><span class="annot"><span class="annottext">== :: Particle -&gt; Particle -&gt; Bool
+</span><span class="hs-operator hs-var hs-var hs-var hs-var">==</span></span></span><span> </span><span id="local-6989586621679147399"><span class="annot"><span class="annottext">particleB :: Particle
+</span><a href="#local-6989586621679147399"><span class="hs-identifier hs-var">particleB</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Particle -&gt; Index
 </span><a href="Main.html#idx"><span class="hs-identifier hs-var hs-var">idx</span></a></span><span> </span><span class="annot"><span class="annottext">Particle
-</span><a href="#local-6989586621679147076"><span class="hs-identifier hs-var">particleA</span></a></span><span> </span><span class="annot"><span class="annottext">Index -&gt; Index -&gt; Bool
+</span><a href="#local-6989586621679147401"><span class="hs-identifier hs-var">particleA</span></a></span><span> </span><span class="annot"><span class="annottext">Index -&gt; Index -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">Particle -&gt; Index
 </span><a href="Main.html#idx"><span class="hs-identifier hs-var hs-var">idx</span></a></span><span> </span><span class="annot"><span class="annottext">Particle
-</span><a href="#local-6989586621679147074"><span class="hs-identifier hs-var">particleB</span></a></span><span>
+</span><a href="#local-6989586621679147399"><span class="hs-identifier hs-var">particleB</span></a></span><span>
 </span><span id="line-37"></span><span>
 </span><span id="line-38"></span><span class="hs-keyword">type</span><span> </span><span id="Particles"><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-var">Particles</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
@@ -58,45 +58,65 @@ forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span id="line-44"></span><span class="hs-comment">-- * Constant functions (throughout all main)</span><span>
 </span><span id="line-45"></span><span>
 </span><span id="line-46"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-47"></span><span id="dotSize"><span class="annot"><span class="annottext">dotSize :: Float
-</span><a href="Main.html#dotSize"><span class="hs-identifier hs-var hs-var">dotSize</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-number">10</span></span><span>
-</span><span id="line-48"></span><span>
-</span><span id="line-49"></span><span class="annot"><a href="Main.html#windowDisplay"><span class="hs-identifier hs-type">windowDisplay</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Display</span></span><span>
-</span><span id="line-50"></span><span id="windowDisplay"><span class="annot"><span class="annottext">windowDisplay :: Display
+</span><span id="line-47"></span><span class="hs-comment">-- Size of the `Particle`s</span><span>
+</span><span id="line-48"></span><span id="dotSize"><span class="annot"><span class="annottext">dotSize :: Float
+</span><a href="Main.html#dotSize"><span class="hs-identifier hs-var hs-var">dotSize</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-number">0.1</span></span><span>
+</span><span id="line-49"></span><span>
+</span><span id="line-50"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-51"></span><span class="hs-comment">-- Window display config</span><span>
+</span><span id="line-52"></span><span class="hs-comment">--</span><span>
+</span><span id="line-53"></span><span class="hs-comment">-- Show a 800x800 window at the window coordinate (200, 800) with the title &quot;MD in</span><span>
+</span><span id="line-54"></span><span class="hs-comment">-- Haskell&quot;</span><span>
+</span><span id="line-55"></span><span class="annot"><a href="Main.html#windowDisplay"><span class="hs-identifier hs-type">windowDisplay</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Display</span></span><span>
+</span><span id="line-56"></span><span id="windowDisplay"><span class="annot"><span class="annottext">windowDisplay :: Display
 </span><a href="Main.html#windowDisplay"><span class="hs-identifier hs-var hs-var">windowDisplay</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Index, Index) -&gt; (Index, Index) -&gt; Display
 </span><span class="hs-identifier hs-var">InWindow</span></span><span> </span><span class="annot"><span class="hs-string">&quot;MD in Haskell&quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-number">800</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-number">800</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-number">200</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-number">800</span></span><span class="hs-special">)</span><span>
-</span><span id="line-51"></span><span>
-</span><span id="line-52"></span><span class="annot"><a href="Main.html#simulationRate"><span class="hs-identifier hs-type">simulationRate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
-</span><span id="line-53"></span><span id="simulationRate"><span class="annot"><span class="annottext">simulationRate :: Index
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-59"></span><span class="hs-comment">-- Number of frames per second</span><span>
+</span><span id="line-60"></span><span class="annot"><a href="Main.html#simulationRate"><span class="hs-identifier hs-type">simulationRate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-61"></span><span id="simulationRate"><span class="annot"><span class="annottext">simulationRate :: Index
 </span><a href="Main.html#simulationRate"><span class="hs-identifier hs-var hs-var">simulationRate</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-number">60</span></span><span>
-</span><span id="line-54"></span><span>
-</span><span id="line-55"></span><span class="annot"><a href="Main.html#toPixels"><span class="hs-identifier hs-type">toPixels</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span>
-</span><span id="line-56"></span><span id="toPixels"><span class="annot"><span class="annottext">toPixels :: Float -&gt; Float
+</span><span id="line-62"></span><span>
+</span><span id="line-63"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-64"></span><span class="hs-comment">-- Transform a value to the scale of Pixels</span><span>
+</span><span id="line-65"></span><span class="annot"><a href="Main.html#toPixels"><span class="hs-identifier hs-type">toPixels</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span>
+</span><span id="line-66"></span><span id="toPixels"><span class="annot"><span class="annottext">toPixels :: Float -&gt; Float
 </span><a href="Main.html#toPixels"><span class="hs-identifier hs-var hs-var">toPixels</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Float
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="hs-number">100.0</span></span><span class="hs-special">)</span><span>
-</span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span class="hs-comment">--</span><span>
-</span><span id="line-59"></span><span>
-</span><span id="line-60"></span><span class="hs-comment">-- * Simulations</span><span>
-</span><span id="line-61"></span><span>
-</span><span id="line-62"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span class="hs-comment">--</span><span>
-</span><span id="line-65"></span><span>
-</span><span id="line-66"></span><span class="hs-comment">-- ** First simulation&quot;</span><span>
 </span><span id="line-67"></span><span>
-</span><span id="line-68"></span><span class="hs-comment">--</span><span>
-</span><span id="line-69"></span><span>
-</span><span id="line-70"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-71"></span><span class="hs-comment">-- The initial model consists of one particle,</span><span>
-</span><span id="line-72"></span><span class="hs-comment">-- which will be drawn and updated according to `newton`.</span><span>
-</span><span id="line-73"></span><span class="hs-comment">--</span><span>
-</span><span id="line-74"></span><span class="hs-comment">-- This results in a particle moving from the center of the</span><span>
-</span><span id="line-75"></span><span class="hs-comment">-- screen to the right:</span><span>
-</span><span id="line-76"></span><span class="annot"><a href="Main.html#main1"><span class="hs-identifier hs-type">main1</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-77"></span><span id="main1"><span class="annot"><span class="annottext">main1 :: IO ()
-</span><a href="Main.html#main1"><span class="hs-identifier hs-var hs-var">main1</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Display
+</span><span id="line-68"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-69"></span><span class="hs-comment">-- Length in the x dimension (width)</span><span>
+</span><span id="line-70"></span><span id="aLength"><span class="annot"><span class="annottext">aLength :: Float
+</span><a href="Main.html#aLength"><span class="hs-identifier hs-var hs-var">aLength</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-number">7</span></span><span>
+</span><span id="line-71"></span><span>
+</span><span id="line-72"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-73"></span><span class="hs-comment">-- Length in the y dimension (height)</span><span>
+</span><span id="line-74"></span><span id="bLength"><span class="annot"><span class="annottext">bLength :: Float
+</span><a href="Main.html#bLength"><span class="hs-identifier hs-var hs-var">bLength</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-number">7</span></span><span>
+</span><span id="line-75"></span><span>
+</span><span id="line-76"></span><span class="hs-comment">--</span><span>
+</span><span id="line-77"></span><span>
+</span><span id="line-78"></span><span class="hs-comment">-- * Simulations</span><span>
+</span><span id="line-79"></span><span>
+</span><span id="line-80"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-81"></span><span>
+</span><span id="line-82"></span><span class="hs-comment">--</span><span>
+</span><span id="line-83"></span><span>
+</span><span id="line-84"></span><span class="hs-comment">-- ** First simulation</span><span>
+</span><span id="line-85"></span><span>
+</span><span id="line-86"></span><span class="hs-comment">--</span><span>
+</span><span id="line-87"></span><span>
+</span><span id="line-88"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-89"></span><span class="hs-comment">-- The initial model consists of one `Particle`,</span><span>
+</span><span id="line-90"></span><span class="hs-comment">-- which will be drawn and updated according to `newton`.</span><span>
+</span><span id="line-91"></span><span class="hs-comment">--</span><span>
+</span><span id="line-92"></span><span class="hs-comment">-- This results in a `Particle` moving from the center of the</span><span>
+</span><span id="line-93"></span><span class="hs-comment">-- screen to the right:</span><span>
+</span><span id="line-94"></span><span class="annot"><a href="Main.html#mainNewton"><span class="hs-identifier hs-type">mainNewton</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-95"></span><span id="mainNewton"><span class="annot"><span class="annottext">mainNewton :: IO ()
+</span><a href="Main.html#mainNewton"><span class="hs-identifier hs-var hs-var">mainNewton</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Display
 -&gt; Color
 -&gt; Index
 -&gt; Model
@@ -115,102 +135,293 @@ Display
 </span><a href="Main.html#windowDisplay"><span class="hs-identifier hs-var">windowDisplay</span></a></span><span> </span><span class="annot"><span class="annottext">Color
 </span><span class="hs-identifier hs-var">white</span></span><span> </span><span class="annot"><span class="annottext">Index
 </span><a href="Main.html#simulationRate"><span class="hs-identifier hs-var">simulationRate</span></a></span><span> </span><span class="annot"><span class="annottext">Model
-</span><a href="#local-6989586621679147064"><span class="hs-identifier hs-var">initialModel</span></a></span><span> </span><span class="annot"><span class="annottext">Model -&gt; Picture
-</span><a href="#local-6989586621679147063"><span class="hs-identifier hs-var">drawingFunc</span></a></span><span> </span><span class="annot"><span class="annottext">ViewPort -&gt; Float -&gt; Model -&gt; Model
-</span><a href="#local-6989586621679147062"><span class="hs-identifier hs-var">updateFunc</span></a></span><span>
-</span><span id="line-78"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-79"></span><span>    </span><span class="annot"><a href="#local-6989586621679147064"><span class="hs-identifier hs-type">initialModel</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span>
-</span><span id="line-80"></span><span>    </span><span id="local-6989586621679147064"><span class="annot"><span class="annottext">initialModel :: Model
-</span><a href="#local-6989586621679147064"><span class="hs-identifier hs-var hs-var">initialModel</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Index -&gt; Position -&gt; Position -&gt; Particle
+</span><a href="#local-6989586621679147386"><span class="hs-identifier hs-var">initialModel</span></a></span><span> </span><span class="annot"><span class="annottext">Model -&gt; Picture
+</span><a href="#local-6989586621679147385"><span class="hs-identifier hs-var">drawingFunc</span></a></span><span> </span><span class="annot"><span class="annottext">ViewPort -&gt; Float -&gt; Model -&gt; Model
+</span><a href="#local-6989586621679147384"><span class="hs-identifier hs-var">updateFunc</span></a></span><span>
+</span><span id="line-96"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-97"></span><span>    </span><span class="annot"><a href="#local-6989586621679147386"><span class="hs-identifier hs-type">initialModel</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span>
+</span><span id="line-98"></span><span>    </span><span id="local-6989586621679147386"><span class="annot"><span class="annottext">initialModel :: Model
+</span><a href="#local-6989586621679147386"><span class="hs-identifier hs-var hs-var">initialModel</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Index -&gt; Position -&gt; Position -&gt; Particle
 </span><a href="Main.html#Particle"><span class="hs-identifier hs-var">Particle</span></a></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Position
 forall a. a -&gt; a -&gt; V2 a
 </span><span class="hs-identifier hs-var">V2</span></span><span> </span><span class="annot"><span class="hs-number">0.0</span></span><span> </span><span class="annot"><span class="hs-number">0.0</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Position
 forall a. a -&gt; a -&gt; V2 a
 </span><span class="hs-identifier hs-var">V2</span></span><span> </span><span class="annot"><span class="hs-number">1.0</span></span><span> </span><span class="annot"><span class="hs-number">0.0</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
-</span><span id="line-81"></span><span>
-</span><span id="line-82"></span><span>    </span><span class="annot"><a href="#local-6989586621679147063"><span class="hs-identifier hs-type">drawingFunc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Picture</span></span><span>
-</span><span id="line-83"></span><span>    </span><span id="local-6989586621679147063"><span class="annot"><span class="annottext">drawingFunc :: Model -&gt; Picture
-</span><a href="#local-6989586621679147063"><span class="hs-identifier hs-var hs-var">drawingFunc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Picture] -&gt; Picture
+</span><span id="line-99"></span><span>
+</span><span id="line-100"></span><span>    </span><span class="annot"><a href="#local-6989586621679147385"><span class="hs-identifier hs-type">drawingFunc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Picture</span></span><span>
+</span><span id="line-101"></span><span>    </span><span id="local-6989586621679147385"><span class="annot"><span class="annottext">drawingFunc :: Model -&gt; Picture
+</span><a href="#local-6989586621679147385"><span class="hs-identifier hs-var hs-var">drawingFunc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Picture] -&gt; Picture
 </span><span class="hs-identifier hs-var">pictures</span></span><span> </span><span class="annot"><span class="annottext">([Picture] -&gt; Picture) -&gt; (Model -&gt; [Picture]) -&gt; Model -&gt; Picture
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">Model -&gt; [Picture]
 </span><a href="Main.html#drawParticles"><span class="hs-identifier hs-var">drawParticles</span></a></span><span>
-</span><span id="line-84"></span><span>
-</span><span id="line-85"></span><span>    </span><span class="annot"><a href="#local-6989586621679147062"><span class="hs-identifier hs-type">updateFunc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ViewPort</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span>
-</span><span id="line-86"></span><span>    </span><span id="local-6989586621679147062"><span class="annot"><span class="annottext">updateFunc :: ViewPort -&gt; Float -&gt; Model -&gt; Model
-</span><a href="#local-6989586621679147062"><span class="hs-identifier hs-var hs-var">updateFunc</span></a></span></span><span> </span><span class="hs-identifier">_</span><span> </span><span id="local-6989586621679147057"><span class="annot"><span class="annottext">dt :: Float
-</span><a href="#local-6989586621679147057"><span class="hs-identifier hs-var">dt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Model -&gt; Model
+</span><span id="line-102"></span><span>
+</span><span id="line-103"></span><span>    </span><span class="annot"><a href="#local-6989586621679147384"><span class="hs-identifier hs-type">updateFunc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ViewPort</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span>
+</span><span id="line-104"></span><span>    </span><span id="local-6989586621679147384"><span class="annot"><span class="annottext">updateFunc :: ViewPort -&gt; Float -&gt; Model -&gt; Model
+</span><a href="#local-6989586621679147384"><span class="hs-identifier hs-var hs-var">updateFunc</span></a></span></span><span> </span><span class="hs-identifier">_</span><span> </span><span id="local-6989586621679147379"><span class="annot"><span class="annottext">dt :: Float
+</span><a href="#local-6989586621679147379"><span class="hs-identifier hs-var">dt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Model -&gt; Model
 </span><a href="Main.html#newton"><span class="hs-identifier hs-var">newton</span></a></span><span> </span><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679147057"><span class="hs-identifier hs-var">dt</span></a></span><span>
-</span><span id="line-87"></span><span>
-</span><span id="line-88"></span><span class="hs-comment">--</span><span>
-</span><span id="line-89"></span><span>
-</span><span id="line-90"></span><span class="hs-comment">-- * Helper functions</span><span>
-</span><span id="line-91"></span><span>
-</span><span id="line-92"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-93"></span><span>
-</span><span id="line-94"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-95"></span><span class="hs-comment">-- Convert a list of `Particle` (`Particles`) into</span><span>
-</span><span id="line-96"></span><span class="hs-comment">-- a list of `Picture`</span><span>
-</span><span id="line-97"></span><span class="annot"><a href="Main.html#drawParticles"><span class="hs-identifier hs-type">drawParticles</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-type">Particles</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Picture</span></span><span class="hs-special">]</span><span>
-</span><span id="line-98"></span><span id="drawParticles"><span class="annot"><span class="annottext">drawParticles :: Model -&gt; [Picture]
+</span><a href="#local-6989586621679147379"><span class="hs-identifier hs-var">dt</span></a></span><span>
+</span><span id="line-105"></span><span>
+</span><span id="line-106"></span><span class="hs-comment">--</span><span>
+</span><span id="line-107"></span><span>
+</span><span id="line-108"></span><span class="hs-comment">-- *** Helper functions</span><span>
+</span><span id="line-109"></span><span>
+</span><span id="line-110"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-111"></span><span>
+</span><span id="line-112"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-113"></span><span class="hs-comment">-- Convert a list of `Particle` (`Particles`) into</span><span>
+</span><span id="line-114"></span><span class="hs-comment">-- a list of `Picture`</span><span>
+</span><span id="line-115"></span><span class="annot"><a href="Main.html#drawParticles"><span class="hs-identifier hs-type">drawParticles</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-type">Particles</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Picture</span></span><span class="hs-special">]</span><span>
+</span><span id="line-116"></span><span id="drawParticles"><span class="annot"><span class="annottext">drawParticles :: Model -&gt; [Picture]
 </span><a href="Main.html#drawParticles"><span class="hs-identifier hs-var hs-var">drawParticles</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Particle -&gt; Picture) -&gt; Model -&gt; [Picture]
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-identifier hs-var">fmap</span></span><span> </span><span class="annot"><span class="annottext">Particle -&gt; Picture
 </span><a href="Main.html#drawParticle"><span class="hs-identifier hs-var">drawParticle</span></a></span><span>
-</span><span id="line-99"></span><span>
-</span><span id="line-100"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-101"></span><span class="hs-comment">-- Visualize a single particle as blue dot</span><span>
-</span><span id="line-102"></span><span class="annot"><a href="Main.html#drawParticle"><span class="hs-identifier hs-type">drawParticle</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Picture</span></span><span>
-</span><span id="line-103"></span><span id="drawParticle"><span class="annot"><span class="annottext">drawParticle :: Particle -&gt; Picture
-</span><a href="Main.html#drawParticle"><span class="hs-identifier hs-var hs-var">drawParticle</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">V2</span></span><span> </span><span id="local-6989586621679147054"><span class="annot"><span class="annottext">x :: Float
-</span><a href="#local-6989586621679147054"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621679147053"><span class="annot"><span class="annottext">y :: Float
-</span><a href="#local-6989586621679147053"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-identifier">_</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Picture -&gt; Picture
+</span><span id="line-117"></span><span>
+</span><span id="line-118"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-119"></span><span class="hs-comment">-- Visualize a single `Particle` as blue dot</span><span>
+</span><span id="line-120"></span><span class="annot"><a href="Main.html#drawParticle"><span class="hs-identifier hs-type">drawParticle</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Picture</span></span><span>
+</span><span id="line-121"></span><span id="drawParticle"><span class="annot"><span class="annottext">drawParticle :: Particle -&gt; Picture
+</span><a href="Main.html#drawParticle"><span class="hs-identifier hs-var hs-var">drawParticle</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">V2</span></span><span> </span><span id="local-6989586621679147376"><span class="annot"><span class="annottext">x :: Float
+</span><a href="#local-6989586621679147376"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621679147375"><span class="annot"><span class="annottext">y :: Float
+</span><a href="#local-6989586621679147375"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-identifier">_</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Picture -&gt; Picture
 </span><span class="hs-identifier hs-var">translate</span></span><span> </span><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679147051"><span class="hs-identifier hs-var">x'</span></a></span><span> </span><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679147050"><span class="hs-identifier hs-var">y'</span></a></span><span> </span><span class="annot"><span class="annottext">(Picture -&gt; Picture) -&gt; Picture -&gt; Picture
+</span><a href="#local-6989586621679147373"><span class="hs-identifier hs-var">x'</span></a></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147372"><span class="hs-identifier hs-var">y'</span></a></span><span> </span><span class="annot"><span class="annottext">(Picture -&gt; Picture) -&gt; Picture -&gt; Picture
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Picture -&gt; Picture
-</span><a href="#local-6989586621679147049"><span class="hs-identifier hs-var">color</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Picture
-</span><span class="hs-identifier hs-var">circleSolid</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147371"><span class="hs-identifier hs-var">color</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Picture
+</span><span class="hs-identifier hs-var">circleSolid</span></span><span> </span><span class="annot"><span class="annottext">(Float -&gt; Picture) -&gt; Float -&gt; Picture
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float
+</span><a href="Main.html#toPixels"><span class="hs-identifier hs-var">toPixels</span></a></span><span> </span><span class="annot"><span class="annottext">Float
 </span><a href="Main.html#dotSize"><span class="hs-identifier hs-var">dotSize</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-104"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-105"></span><span>    </span><span id="local-6989586621679147051"><span class="annot"><span class="annottext">x' :: Float
-</span><a href="#local-6989586621679147051"><span class="hs-identifier hs-var hs-var">x'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float
+</span><span id="line-122"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-123"></span><span>    </span><span id="local-6989586621679147373"><span class="annot"><span class="annottext">x' :: Float
+</span><a href="#local-6989586621679147373"><span class="hs-identifier hs-var hs-var">x'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float
 </span><a href="Main.html#toPixels"><span class="hs-identifier hs-var">toPixels</span></a></span><span> </span><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679147054"><span class="hs-identifier hs-var">x</span></a></span><span>
-</span><span id="line-106"></span><span>    </span><span id="local-6989586621679147050"><span class="annot"><span class="annottext">y' :: Float
-</span><a href="#local-6989586621679147050"><span class="hs-identifier hs-var hs-var">y'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float
+</span><a href="#local-6989586621679147376"><span class="hs-identifier hs-var">x</span></a></span><span>
+</span><span id="line-124"></span><span>    </span><span id="local-6989586621679147372"><span class="annot"><span class="annottext">y' :: Float
+</span><a href="#local-6989586621679147372"><span class="hs-identifier hs-var hs-var">y'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float
 </span><a href="Main.html#toPixels"><span class="hs-identifier hs-var">toPixels</span></a></span><span> </span><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679147053"><span class="hs-identifier hs-var">y</span></a></span><span>
-</span><span id="line-107"></span><span>    </span><span id="local-6989586621679147049"><span class="annot"><span class="annottext">color :: Picture -&gt; Picture
-</span><a href="#local-6989586621679147049"><span class="hs-identifier hs-var hs-var">color</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Color -&gt; Picture -&gt; Picture
+</span><a href="#local-6989586621679147375"><span class="hs-identifier hs-var">y</span></a></span><span>
+</span><span id="line-125"></span><span>    </span><span id="local-6989586621679147371"><span class="annot"><span class="annottext">color :: Picture -&gt; Picture
+</span><a href="#local-6989586621679147371"><span class="hs-identifier hs-var hs-var">color</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Color -&gt; Picture -&gt; Picture
 </span><span class="hs-identifier hs-var">Color</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Color -&gt; Color
 </span><span class="hs-identifier hs-var">withAlpha</span></span><span> </span><span class="annot"><span class="hs-number">0.8</span></span><span> </span><span class="annot"><span class="annottext">Color
 </span><span class="hs-identifier hs-var">blue</span></span><span class="hs-special">)</span><span>
-</span><span id="line-108"></span><span>
-</span><span id="line-109"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-110"></span><span class="hs-comment">-- Update velocity of one particle</span><span>
-</span><span id="line-111"></span><span class="hs-comment">-- assuming no acceleration</span><span>
-</span><span id="line-112"></span><span class="annot"><a href="Main.html#newton"><span class="hs-identifier hs-type">newton</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-type">Particles</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-type">Particles</span></a></span><span>
-</span><span id="line-113"></span><span id="newton"><span class="annot"><span class="annottext">newton :: Float -&gt; Model -&gt; Model
-</span><a href="Main.html#newton"><span class="hs-identifier hs-var hs-var">newton</span></a></span></span><span> </span><span id="local-6989586621679147044"><span class="annot"><span class="annottext">dt :: Float
-</span><a href="#local-6989586621679147044"><span class="hs-identifier hs-var">dt</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span id="local-6989586621679147043"><span class="annot"><span class="annottext">idx :: Index
-</span><a href="#local-6989586621679147043"><span class="hs-identifier hs-var">idx</span></a></span></span><span> </span><span id="local-6989586621679147042"><span class="annot"><span class="annottext">pos :: Position
-</span><a href="#local-6989586621679147042"><span class="hs-identifier hs-var">pos</span></a></span></span><span> </span><span id="local-6989586621679147041"><span class="annot"><span class="annottext">vel :: Position
-</span><a href="#local-6989586621679147041"><span class="hs-identifier hs-var">vel</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Index -&gt; Position -&gt; Position -&gt; Particle
+</span><span id="line-126"></span><span>
+</span><span id="line-127"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-128"></span><span class="hs-comment">-- Update velocity of one `Particle`</span><span>
+</span><span id="line-129"></span><span class="hs-comment">-- assuming no acceleration</span><span>
+</span><span id="line-130"></span><span class="annot"><a href="Main.html#newton"><span class="hs-identifier hs-type">newton</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-type">Particles</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-type">Particles</span></a></span><span>
+</span><span id="line-131"></span><span id="newton"><span class="annot"><span class="annottext">newton :: Float -&gt; Model -&gt; Model
+</span><a href="Main.html#newton"><span class="hs-identifier hs-var hs-var">newton</span></a></span></span><span> </span><span id="local-6989586621679147366"><span class="annot"><span class="annottext">dt :: Float
+</span><a href="#local-6989586621679147366"><span class="hs-identifier hs-var">dt</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span id="local-6989586621679147365"><span class="annot"><span class="annottext">idx :: Index
+</span><a href="#local-6989586621679147365"><span class="hs-identifier hs-var">idx</span></a></span></span><span> </span><span id="local-6989586621679147364"><span class="annot"><span class="annottext">pos :: Position
+</span><a href="#local-6989586621679147364"><span class="hs-identifier hs-var">pos</span></a></span></span><span> </span><span id="local-6989586621679147363"><span class="annot"><span class="annottext">vel :: Position
+</span><a href="#local-6989586621679147363"><span class="hs-identifier hs-var">vel</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Index -&gt; Position -&gt; Position -&gt; Particle
 </span><a href="Main.html#Particle"><span class="hs-identifier hs-var">Particle</span></a></span><span> </span><span class="annot"><span class="annottext">Index
-</span><a href="#local-6989586621679147043"><span class="hs-identifier hs-var">idx</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679147040"><span class="hs-identifier hs-var">pos'</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679147041"><span class="hs-identifier hs-var">vel</span></a></span><span class="hs-special">]</span><span>
-</span><span id="line-114"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-115"></span><span>    </span><span id="local-6989586621679147040"><span class="annot"><span class="annottext">pos' :: Position
-</span><a href="#local-6989586621679147040"><span class="hs-identifier hs-var hs-var">pos'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679147042"><span class="hs-identifier hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Position -&gt; Position
+</span><a href="#local-6989586621679147365"><span class="hs-identifier hs-var">idx</span></a></span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147362"><span class="hs-identifier hs-var">pos'</span></a></span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147363"><span class="hs-identifier hs-var">vel</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-132"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-133"></span><span>    </span><span id="local-6989586621679147362"><span class="annot"><span class="annottext">pos' :: Position
+</span><a href="#local-6989586621679147362"><span class="hs-identifier hs-var hs-var">pos'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147364"><span class="hs-identifier hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Position -&gt; Position
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679147041"><span class="hs-identifier hs-var">vel</span></a></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Float -&gt; Position
+</span><a href="#local-6989586621679147363"><span class="hs-identifier hs-var">vel</span></a></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Float -&gt; Position
 forall (f :: * -&gt; *) a. (Functor f, Num a) =&gt; f a -&gt; a -&gt; f a
 </span><span class="hs-operator hs-var">^*</span></span><span> </span><span class="annot"><span class="annottext">Float
-</span><a href="#local-6989586621679147044"><span class="hs-identifier hs-var">dt</span></a></span><span>
-</span><span id="line-116"></span></pre></body></html>
+</span><a href="#local-6989586621679147366"><span class="hs-identifier hs-var">dt</span></a></span><span>
+</span><span id="line-134"></span><span>
+</span><span id="line-135"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-136"></span><span>
+</span><span id="line-137"></span><span class="hs-comment">--</span><span>
+</span><span id="line-138"></span><span>
+</span><span id="line-139"></span><span class="hs-comment">-- ** Second simulation</span><span>
+</span><span id="line-140"></span><span>
+</span><span id="line-141"></span><span class="hs-comment">--</span><span>
+</span><span id="line-142"></span><span>
+</span><span id="line-143"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-144"></span><span class="hs-comment">-- The initial model consists of one `Particle`,</span><span>
+</span><span id="line-145"></span><span class="hs-comment">-- which will be drawn and updated according to `newtonBounce`.</span><span>
+</span><span id="line-146"></span><span class="hs-comment">--</span><span>
+</span><span id="line-147"></span><span class="hs-comment">-- This results in a `Particle` moving from the center of the</span><span>
+</span><span id="line-148"></span><span class="hs-comment">-- screen to the right and will bounce of the wall:</span><span>
+</span><span id="line-149"></span><span class="annot"><a href="Main.html#mainNewton%27"><span class="hs-identifier hs-type">mainNewton'</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-150"></span><span id="mainNewton%27"><span class="annot"><span class="annottext">mainNewton' :: IO ()
+</span><a href="Main.html#mainNewton%27"><span class="hs-identifier hs-var hs-var">mainNewton'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Display
+-&gt; Color
+-&gt; Index
+-&gt; Model
+-&gt; (Model -&gt; Picture)
+-&gt; (ViewPort -&gt; Float -&gt; Model -&gt; Model)
+-&gt; IO ()
+forall model.
+Display
+-&gt; Color
+-&gt; Index
+-&gt; model
+-&gt; (model -&gt; Picture)
+-&gt; (ViewPort -&gt; Float -&gt; model -&gt; model)
+-&gt; IO ()
+</span><span class="hs-identifier hs-var">simulate</span></span><span> </span><span class="annot"><span class="annottext">Display
+</span><a href="Main.html#windowDisplay"><span class="hs-identifier hs-var">windowDisplay</span></a></span><span> </span><span class="annot"><span class="annottext">Color
+</span><span class="hs-identifier hs-var">white</span></span><span> </span><span class="annot"><span class="annottext">Index
+</span><a href="Main.html#simulationRate"><span class="hs-identifier hs-var">simulationRate</span></a></span><span> </span><span class="annot"><span class="annottext">Model
+</span><a href="#local-6989586621679147359"><span class="hs-identifier hs-var">initialModel</span></a></span><span> </span><span class="annot"><span class="annottext">Model -&gt; Picture
+</span><a href="#local-6989586621679147358"><span class="hs-identifier hs-var">drawingFunc</span></a></span><span> </span><span class="annot"><span class="annottext">ViewPort -&gt; Float -&gt; Model -&gt; Model
+</span><a href="#local-6989586621679147357"><span class="hs-identifier hs-var">updateFunc</span></a></span><span>
+</span><span id="line-151"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-152"></span><span>    </span><span class="annot"><a href="#local-6989586621679147359"><span class="hs-identifier hs-type">initialModel</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span>
+</span><span id="line-153"></span><span>    </span><span id="local-6989586621679147359"><span class="annot"><span class="annottext">initialModel :: Model
+</span><a href="#local-6989586621679147359"><span class="hs-identifier hs-var hs-var">initialModel</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Index -&gt; Position -&gt; Position -&gt; Particle
+</span><a href="Main.html#Particle"><span class="hs-identifier hs-var">Particle</span></a></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Position
+forall a. a -&gt; a -&gt; V2 a
+</span><span class="hs-identifier hs-var">V2</span></span><span> </span><span class="annot"><span class="hs-number">0.0</span></span><span> </span><span class="annot"><span class="hs-number">0.0</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Position
+forall a. a -&gt; a -&gt; V2 a
+</span><span class="hs-identifier hs-var">V2</span></span><span> </span><span class="annot"><span class="hs-number">1.0</span></span><span> </span><span class="annot"><span class="hs-number">0.0</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><span id="line-154"></span><span>
+</span><span id="line-155"></span><span>    </span><span class="annot"><a href="#local-6989586621679147358"><span class="hs-identifier hs-type">drawingFunc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Picture</span></span><span>
+</span><span id="line-156"></span><span>    </span><span id="local-6989586621679147358"><span class="annot"><span class="annottext">drawingFunc :: Model -&gt; Picture
+</span><a href="#local-6989586621679147358"><span class="hs-identifier hs-var hs-var">drawingFunc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Picture] -&gt; Picture
+</span><span class="hs-identifier hs-var">pictures</span></span><span> </span><span class="annot"><span class="annottext">([Picture] -&gt; Picture) -&gt; (Model -&gt; [Picture]) -&gt; Model -&gt; Picture
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">:</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Picture
+</span><a href="Main.html#drawWalls"><span class="hs-identifier hs-var">drawWalls</span></a></span><span> </span><span class="annot"><span class="annottext">([Picture] -&gt; [Picture])
+-&gt; (Model -&gt; [Picture]) -&gt; Model -&gt; [Picture]
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">Model -&gt; [Picture]
+</span><a href="Main.html#drawParticles"><span class="hs-identifier hs-var">drawParticles</span></a></span><span>
+</span><span id="line-157"></span><span>
+</span><span id="line-158"></span><span>    </span><span class="annot"><a href="#local-6989586621679147357"><span class="hs-identifier hs-type">updateFunc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ViewPort</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Model"><span class="hs-identifier hs-type">Model</span></a></span><span>
+</span><span id="line-159"></span><span>    </span><span id="local-6989586621679147357"><span class="annot"><span class="annottext">updateFunc :: ViewPort -&gt; Float -&gt; Model -&gt; Model
+</span><a href="#local-6989586621679147357"><span class="hs-identifier hs-var hs-var">updateFunc</span></a></span></span><span> </span><span class="hs-identifier">_</span><span> </span><span id="local-6989586621679147355"><span class="annot"><span class="annottext">dt :: Float
+</span><a href="#local-6989586621679147355"><span class="hs-identifier hs-var">dt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Model -&gt; Model
+</span><a href="Main.html#newtonBounce"><span class="hs-identifier hs-var">newtonBounce</span></a></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147355"><span class="hs-identifier hs-var">dt</span></a></span><span>
+</span><span id="line-160"></span><span>
+</span><span id="line-161"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-162"></span><span>
+</span><span id="line-163"></span><span class="hs-comment">-- *** Additional helper functions</span><span>
+</span><span id="line-164"></span><span>
+</span><span id="line-165"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-166"></span><span>
+</span><span id="line-167"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-168"></span><span class="hs-comment">-- A `Picture` of the wall surrounding the `Particle` (&quot;simulation box&quot;)</span><span>
+</span><span id="line-169"></span><span class="annot"><a href="Main.html#drawWalls"><span class="hs-identifier hs-type">drawWalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Picture</span></span><span>
+</span><span id="line-170"></span><span id="drawWalls"><span class="annot"><span class="annottext">drawWalls :: Picture
+</span><a href="Main.html#drawWalls"><span class="hs-identifier hs-var hs-var">drawWalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Path -&gt; Picture
+</span><span class="hs-identifier hs-var">lineLoop</span></span><span> </span><span class="annot"><span class="annottext">(Path -&gt; Picture) -&gt; Path -&gt; Picture
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Path
+</span><span class="hs-identifier hs-var">rectanglePath</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Float
+</span><a href="Main.html#toPixels"><span class="hs-identifier hs-var">toPixels</span></a></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="Main.html#aLength"><span class="hs-identifier hs-var">aLength</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float -&gt; Float
+</span><a href="Main.html#toPixels"><span class="hs-identifier hs-var">toPixels</span></a></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="Main.html#bLength"><span class="hs-identifier hs-var">bLength</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-171"></span><span>
+</span><span id="line-172"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-173"></span><span class="hs-comment">-- Updated `newton` function, which incorporates bouncing of the wall (see</span><span>
+</span><span id="line-174"></span><span class="hs-comment">-- `boundaryCondition`)</span><span>
+</span><span id="line-175"></span><span class="annot"><a href="Main.html#newtonBounce"><span class="hs-identifier hs-type">newtonBounce</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-type">Particles</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Main.html#Particles"><span class="hs-identifier hs-type">Particles</span></a></span><span>
+</span><span id="line-176"></span><span id="newtonBounce"><span class="annot"><span class="annottext">newtonBounce :: Float -&gt; Model -&gt; Model
+</span><a href="Main.html#newtonBounce"><span class="hs-identifier hs-var hs-var">newtonBounce</span></a></span></span><span> </span><span id="local-6989586621679147351"><span class="annot"><span class="annottext">dt :: Float
+</span><a href="#local-6989586621679147351"><span class="hs-identifier hs-var">dt</span></a></span></span><span> </span><span class="hs-special">[</span><span id="local-6989586621679147350"><span class="annot"><span class="annottext">particle :: Particle
+</span><a href="#local-6989586621679147350"><span class="hs-identifier hs-var">particle</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span id="local-6989586621679147349"><span class="annot"><span class="annottext">idx :: Index
+</span><a href="#local-6989586621679147349"><span class="hs-identifier hs-var">idx</span></a></span></span><span> </span><span id="local-6989586621679147348"><span class="annot"><span class="annottext">pos :: Position
+</span><a href="#local-6989586621679147348"><span class="hs-identifier hs-var">pos</span></a></span></span><span> </span><span id="local-6989586621679147347"><span class="annot"><span class="annottext">vel :: Position
+</span><a href="#local-6989586621679147347"><span class="hs-identifier hs-var">vel</span></a></span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Index -&gt; Position -&gt; Position -&gt; Particle
+</span><a href="Main.html#Particle"><span class="hs-identifier hs-var">Particle</span></a></span><span> </span><span class="annot"><span class="annottext">Index
+</span><a href="#local-6989586621679147349"><span class="hs-identifier hs-var">idx</span></a></span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147346"><span class="hs-identifier hs-var">pos'</span></a></span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147345"><span class="hs-identifier hs-var">vel'</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-177"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-178"></span><span>    </span><span id="local-6989586621679147344"><span class="annot"><span class="annottext">transVec :: Position
+</span><a href="#local-6989586621679147344"><span class="hs-identifier hs-var hs-var">transVec</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Particle -&gt; Position
+</span><a href="Main.html#boundaryCondition"><span class="hs-identifier hs-var">boundaryCondition</span></a></span><span> </span><span class="annot"><span class="annottext">Particle
+</span><a href="#local-6989586621679147350"><span class="hs-identifier hs-var">particle</span></a></span><span>
+</span><span id="line-179"></span><span>    </span><span id="local-6989586621679147345"><span class="annot"><span class="annottext">vel' :: Position
+</span><a href="#local-6989586621679147345"><span class="hs-identifier hs-var hs-var">vel'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147344"><span class="hs-identifier hs-var">transVec</span></a></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Position -&gt; Position
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147347"><span class="hs-identifier hs-var">vel</span></a></span><span>
+</span><span id="line-180"></span><span>    </span><span id="local-6989586621679147346"><span class="annot"><span class="annottext">pos' :: Position
+</span><a href="#local-6989586621679147346"><span class="hs-identifier hs-var hs-var">pos'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147348"><span class="hs-identifier hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Position -&gt; Position
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679147345"><span class="hs-identifier hs-var">vel'</span></a></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Float -&gt; Position
+forall (f :: * -&gt; *) a. (Functor f, Num a) =&gt; f a -&gt; a -&gt; f a
+</span><span class="hs-operator hs-var">^*</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147351"><span class="hs-identifier hs-var">dt</span></a></span><span>
+</span><span id="line-181"></span><span>
+</span><span id="line-182"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-183"></span><span class="hs-comment">-- Transformation vector, which is used to change the direction of a `Particle`, when it</span><span>
+</span><span id="line-184"></span><span class="hs-comment">-- is close (current position + radius of the particle) to a wall in x,</span><span>
+</span><span id="line-185"></span><span class="hs-comment">-- y or (x+y) direction.</span><span>
+</span><span id="line-186"></span><span class="annot"><a href="Main.html#boundaryCondition"><span class="hs-identifier hs-type">boundaryCondition</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">V2</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span>
+</span><span id="line-187"></span><span id="boundaryCondition"><span class="annot"><span class="annottext">boundaryCondition :: Particle -&gt; Position
+</span><a href="Main.html#boundaryCondition"><span class="hs-identifier hs-var hs-var">boundaryCondition</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Main.html#Particle"><span class="hs-identifier hs-type">Particle</span></a></span><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">V2</span></span><span> </span><span id="local-6989586621679147342"><span class="annot"><span class="annottext">x :: Float
+</span><a href="#local-6989586621679147342"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621679147341"><span class="annot"><span class="annottext">y :: Float
+</span><a href="#local-6989586621679147341"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-identifier">_</span><span class="hs-special">)</span><span>
+</span><span id="line-188"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147340"><span class="hs-identifier hs-var">x'</span></a></span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="Main.html#aLength"><span class="hs-identifier hs-var">aLength</span></a></span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Float
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span class="annot"><span class="hs-number">2</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><span class="hs-operator hs-var">&amp;&amp;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147336"><span class="hs-identifier hs-var">y'</span></a></span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="Main.html#bLength"><span class="hs-identifier hs-var">bLength</span></a></span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Float
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span class="annot"><span class="hs-number">2</span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Position
+forall a. a -&gt; a -&gt; V2 a
+</span><span class="hs-identifier hs-var">V2</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span>
+</span><span id="line-189"></span><span>  </span><span class="hs-glyph">|</span><span>  </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147340"><span class="hs-identifier hs-var">x'</span></a></span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="Main.html#aLength"><span class="hs-identifier hs-var">aLength</span></a></span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Float
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span class="annot"><span class="hs-number">2</span></span><span>                      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Position
+forall a. a -&gt; a -&gt; V2 a
+</span><span class="hs-identifier hs-var">V2</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span>   </span><span class="annot"><span class="hs-number">1</span></span><span>
+</span><span id="line-190"></span><span>  </span><span class="hs-glyph">|</span><span>  </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147336"><span class="hs-identifier hs-var">y'</span></a></span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="Main.html#bLength"><span class="hs-identifier hs-var">bLength</span></a></span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Float
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span class="annot"><span class="hs-number">2</span></span><span>                      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Position
+forall a. a -&gt; a -&gt; V2 a
+</span><span class="hs-identifier hs-var">V2</span></span><span>   </span><span class="annot"><span class="hs-number">1</span></span><span>  </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span>
+</span><span id="line-191"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">otherwise</span></span><span>                            </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Position
+forall a. a -&gt; a -&gt; V2 a
+</span><span class="hs-identifier hs-var">V2</span></span><span>   </span><span class="annot"><span class="hs-number">1</span></span><span>    </span><span class="annot"><span class="hs-number">1</span></span><span>
+</span><span id="line-192"></span><span>   </span><span class="hs-keyword">where</span><span>
+</span><span id="line-193"></span><span>     </span><span id="local-6989586621679147340"><span class="annot"><span class="annottext">x' :: Float
+</span><a href="#local-6989586621679147340"><span class="hs-identifier hs-var hs-var">x'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float
+forall a. Num a =&gt; a -&gt; a
+</span><span class="hs-identifier hs-var">abs</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147342"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Float
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="Main.html#dotSize"><span class="hs-identifier hs-var">dotSize</span></a></span><span>
+</span><span id="line-194"></span><span>     </span><span id="local-6989586621679147336"><span class="annot"><span class="annottext">y' :: Float
+</span><a href="#local-6989586621679147336"><span class="hs-identifier hs-var hs-var">y'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float
+forall a. Num a =&gt; a -&gt; a
+</span><span class="hs-identifier hs-var">abs</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679147341"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="annot"><span class="annottext">Float -&gt; Float -&gt; Float
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="Main.html#dotSize"><span class="hs-identifier hs-var">dotSize</span></a></span><span>
+</span><span id="line-195"></span></pre></body></html>
