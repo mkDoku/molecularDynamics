@@ -26,17 +26,25 @@ main :: IO ()
 main = mainNewton
 ```
 
-![A particle moving to the right](./gifs/ball_newton.gif)
+![A particle moving to the right](./gifs/newton.gif)
 
-### `mainNewton'`
+### `mainNewtonBounce`
 
 ```haskell
 main :: IO ()
-main = mainNewton'
+main = mainNewtonBounce
 ```
 
-![A particle moving to the right and bouncing of a wall](./gifs/ball_newton_bounce.gif)
+![A particle moving to the right and bouncing of a wall](./gifs/newton_bounce.gif)
 
+### `mainVerlet1`
+
+```haskell
+main :: IO ()
+main = mainVerlet1
+```
+
+![Two particles attracting and repulsing each other](./gifs/verlet1.gif)
 
 ## Documentation
 
