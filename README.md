@@ -37,14 +37,23 @@ main = mainNewtonBounce
 
 ![A particle moving to the right and bouncing of a wall](./gifs/newton_bounce.gif)
 
-### `mainVerlet1`
+### `mainVerlet`
 
 ```haskell
 main :: IO ()
-main = mainVerlet1
+main = mainVerlet
 ```
 
-![Two particles attracting and repulsing each other](./gifs/verlet1.gif)
+![Two particles attracting and repulsing each other](./gifs/verlet.gif)
+
+### `mainVerletSquare`
+
+```haskell
+main :: IO ()
+main = mainVerletSquare
+```
+
+![Molecular Dynamics simulation of 64 particles](./gifs/verletSquare.gif)
 
 ## Documentation
 

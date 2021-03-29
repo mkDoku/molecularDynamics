@@ -11,11 +11,12 @@ import           System.Random
 --
 --    * 'mainNewton'
 --    * 'mainNewtonBounce'
---    * 'mainVerlet1'
+--    * 'mainVerlet'
+--    * 'mainVerletSquare'
 --
 -- to perform the according simulation
 main :: IO ()
-main = mainVerlet1
+main = mainVerletSquare
 
 -- * Types and data constructors
 
@@ -227,8 +228,8 @@ boundaryCondition (Particle _ (V2 x y) _)
 -- and the [Lennard-Jones
 -- potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential)
 -- of two `Particle`s. They attract and repulse each other.
-mainVerlet1 :: IO ()
-mainVerlet1 = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
+mainVerlet :: IO ()
+mainVerlet = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
     initialModel = [ Particle 1 (V2   0.3  0.0) (V2   0.0  0.0)
@@ -369,3 +370,62 @@ updateVelocity dt particle force = Particle idx pos vel'
 updatePositions, updateVelocities :: TimeStep -> [Particle] -> [Force] -> [Particle]
 updatePositions  dt = zipWith (updatePosition dt)
 updateVelocities dt = zipWith (updateVelocity dt)
+
+
+
+-- |
+
+--
+
+-- ** Fourth simulation
+
+--
+
+-- |
+-- Same as `mainVerlet` but with a square lattice of \(8 \times 8\) particles
+mainVerletSquare :: IO ()
+mainVerletSquare = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
+  where
+    initialModel :: Model
+    initialModel = squareLatticeModel 8
+
+    drawingFunc :: Model -> Picture
+    drawingFunc = pictures . (:) drawWalls . drawParticles
+
+    updateFunc :: ViewPort -> Float -> Model -> Model
+    updateFunc _ dt = verletStep dt
+
+-- |
+
+-- *** Additional helper functions
+
+-- |
+
+-- |
+-- Function to construct a [square lattice](https://en.wikipedia.org/wiki/Square_lattice)
+-- of dimension \(n \times n\)
+squareLatticeModel n = zipWith3 Particle idxs poss vels
+  where
+    idxs = [1..(n^2)]
+    poss = squareLattice n n
+    vels = replicate (n^2) (V2 0.0 0.0)
+
+-- |
+-- Constructs the [square lattice](https://en.wikipedia.org/wiki/Square_lattice)
+-- (`squareLatticeModel`) row by row.
+-- Each row has the same distance from the next row
+squareLattice :: Int -> Int -> [Position]
+squareLattice _ 0   = []
+squareLattice dim acc = latticeRow dim dim yPos ++ squareLattice dim (acc-1)
+  where
+    dy   = bLength / fromIntegral (dim+1)
+    yPos = bLength/2 - (fromIntegral acc * dy)
+
+-- |
+-- Constructs a even-distanced row of `Particle`s
+latticeRow :: Int -> Int -> Float -> [Position]
+latticeRow _ 0 _ = []
+latticeRow dim acc yPos = V2 xPos yPos : latticeRow dim (acc-1) yPos
+  where
+    dx   = aLength / fromIntegral (dim+1)
+    xPos = aLength/2 - (fromIntegral acc * dx)
