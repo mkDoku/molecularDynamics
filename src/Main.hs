@@ -2,6 +2,7 @@ module Main where
 
 import           Graphics.Gloss
 import           Graphics.Gloss.Data.ViewPort
+import           Linear.Metric
 import           Linear.V2
 import           Linear.Vector
 import           System.Random
@@ -13,10 +14,11 @@ import           System.Random
 --    * 'mainNewtonBounce'
 --    * 'mainVerlet'
 --    * 'mainVerletSquare'
+--    * 'mainVerletRandom'
 --
 -- to perform the according simulation
 main :: IO ()
-main = mainVerletSquare
+main = mainVerletRandom
 
 -- * Types and data constructors
 
@@ -325,13 +327,6 @@ calcForceBetween particleA particleB
       posB = pos particleB
 
 -- |
--- The [Euclidean norm](https://en.wikipedia.org/wiki/Norm\_(mathematics\)#Euclidean_norm)
--- for a two-dimensional vector
--- \[ ||\vec{r}|| = \sqrt{x \cdot x + y \cdot y} \]
-norm :: V2 Float -> Float
-norm (V2 x y) = sqrt $ x*x + y*y
-
--- |
 -- Repulsion term of the [Lennard-Jones
 -- potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential)
 repulsion :: Position -> Position -> Force
@@ -382,7 +377,7 @@ updateVelocities dt = zipWith (updateVelocity dt)
 --
 
 -- |
--- Same as `mainVerlet` but with a square lattice of \(8 \times 8\) particles
+-- Same as `mainVerlet` but with a square lattice of \(8 \times 8\) `Particle`s
 mainVerletSquare :: IO ()
 mainVerletSquare = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
   where
@@ -429,3 +424,69 @@ latticeRow dim acc yPos = V2 xPos yPos : latticeRow dim (acc-1) yPos
   where
     dx   = aLength / fromIntegral (dim+1)
     xPos = aLength/2 - (fromIntegral acc * dx)
+
+-- |
+
+-- ** Fourth simulation
+
+--
+
+-- |
+-- Same as `mainVerlet` but with 24 random generated `Particle`s
+mainVerletRandom :: IO ()
+mainVerletRandom = do
+  seed <- newStdGen
+  simulate windowDisplay white simulationRate (initialModel seed) drawingFunc updateFunc
+    where
+      initialModel :: RandomGen g => g -> Model
+      initialModel = modelRandom 24
+
+      drawingFunc :: Model -> Picture
+      drawingFunc = pictures . (:) drawWalls . drawParticles
+
+      updateFunc :: ViewPort -> Float -> Model -> Model
+      updateFunc _ dt = verletStep dt
+
+-- |
+
+-- *** Additional helper functions
+
+-- |
+
+-- |
+-- Generates \(n\) random `Particle`s (random `Position` and `Velocity`).
+modelRandom :: RandomGen g => Int -> g -> [Particle]
+modelRandom n g = zipWith3 Particle idxs poss vels
+  where
+    idxs = [1..n]
+    poss = randomPos n g
+    vels = randomVel n g
+
+-- |
+-- Generates \(n\) random `Velocity` values
+--
+-- __Range__: \(v \in [-0.2,0.2]\)
+randomVel :: RandomGen g => Int -> g -> [Velocity]
+randomVel n g = take n $ randomRs ( -0.2, 0.2 ) g :: [Velocity]
+
+-- |
+-- Generates \(n\) random `Position`s
+randomPos :: RandomGen g => Int -> g -> [Position]
+randomPos 0 g = []
+randomPos n g = newPos:randomPos n' g'
+  where
+    (newPos, g') = genPos g
+    n' = n - 1
+
+-- |
+-- Generates \(1\) random `Position`
+--
+-- __Range__: All values inside the simulation box ('drawWalls')
+genPos :: RandomGen g => g -> (Position, g)
+genPos g = (pos, g'')
+  where
+    (xGen,  g') = randomR ( -aLengthHalf, aLengthHalf ) g
+    (yGen, g'') = randomR ( -bLengthHalf, bLengthHalf ) g'
+    pos = V2 xGen yGen
+    aLengthHalf = aLength / 2 - dotSize
+    bLengthHalf = bLength / 2 - dotSize

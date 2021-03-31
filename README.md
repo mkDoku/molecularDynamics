@@ -55,6 +55,15 @@ main = mainVerletSquare
 
 ![Molecular Dynamics simulation of 64 particles](./gifs/verletSquare.gif)
 
+### `mainVerletRandom`
+
+```haskell
+main :: IO ()
+main = mainVerletRandom
+```
+
+![Molecular Dynamics simulation of 24 randomly generated particles](./gifs/verletRandom.gif)
+
 ## Documentation
 
 Have a look at [the docs](./docs/Main.html) for the API documentation.
