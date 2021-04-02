@@ -18,7 +18,7 @@ import           System.Random
 --
 -- to perform the according simulation
 main :: IO ()
-main = mainVerletRandom
+main = mainVerletSquare
 
 -- * Types and data constructors
 
@@ -121,9 +121,9 @@ mainNewton = simulate windowDisplay white simulationRate initialModel drawingFun
     initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0)]
 
     drawingFunc :: Model -> Picture
-    drawingFunc = pictures . drawParticles
+    drawingFunc = pictures . fmap drawParticle
 
-    updateFunc :: ViewPort -> Float -> Model -> Model
+    updateFunc :: ViewPort -> TimeStep -> Model -> Model
     updateFunc _ dt = newton dt
 
 --
@@ -133,15 +133,12 @@ mainNewton = simulate windowDisplay white simulationRate initialModel drawingFun
 -- |
 
 -- |
--- Convert a list of `Particle` ([Particle]) into
--- a list of `Picture`
-drawParticles :: [Particle] -> [Picture]
-drawParticles = fmap drawParticle
-
--- |
 -- Visualize a single `Particle` as blue dot
+-- by transforming the `Position` of the `Particle` into
+-- a `Picture`, which can be rendered
 drawParticle :: Particle -> Picture
-drawParticle (Particle _ (V2 x y) _) = translate x' y' $ color (circleSolid $ toPixels dotSize)
+drawParticle (Particle _ (V2 x y) _) =
+  translate x' y' $ color (circleSolid $ toPixels dotSize)
   where
     x' = toPixels x
     y' = toPixels y
@@ -150,7 +147,7 @@ drawParticle (Particle _ (V2 x y) _) = translate x' y' $ color (circleSolid $ to
 -- |
 -- Update velocity of one `Particle`
 -- assuming no acceleration
-newton :: Float -> [Particle] -> [Particle]
+newton :: TimeStep -> [Particle] -> [Particle]
 newton dt [Particle idx pos vel] = [Particle idx pos' vel]
   where
     pos' = pos + vel ^* dt
@@ -176,7 +173,7 @@ mainNewtonBounce = simulate windowDisplay white simulationRate initialModel draw
     initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0)]
 
     drawingFunc :: Model -> Picture
-    drawingFunc = pictures . (:) drawWalls . drawParticles
+    drawingFunc = pictures . (:) drawWalls . fmap drawParticle
 
     updateFunc :: ViewPort -> Float -> Model -> Model
     updateFunc _ dt = newtonBounce dt
@@ -238,7 +235,7 @@ mainVerlet = simulate windowDisplay white simulationRate initialModel drawingFun
                    , Particle 2 (V2 (-0.3) 0.0) (V2 (-0.0) 0.0) ]
 
     drawingFunc :: Model -> Picture
-    drawingFunc = pictures . (:) drawWalls . drawParticles
+    drawingFunc = pictures . (:) drawWalls . fmap drawParticle
 
     updateFunc :: ViewPort -> Float -> Model -> Model
     updateFunc _ dt = verletStep dt
@@ -268,13 +265,14 @@ verletStep dt particles =
 -- |
 -- Mass of all our `Particle`s
 m :: Float
-m = 40
+m = 18
 
 -- |
 -- The \(\epsilon\) value of the [Lennard-Jones
 -- potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential)
 epsilon :: Float
-epsilon = 1.65
+-- epsilon = 1.65
+epsilon = 12.57
 
 -- |
 -- The \(\sigma\) value of the [Lennard-Jones
@@ -330,7 +328,7 @@ calcForceBetween particleA particleB
 -- Repulsion term of the [Lennard-Jones
 -- potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential)
 repulsion :: Position -> Position -> Force
-repulsion posA posB = r ^* (epsilon * 12.0 * sigma12 / divisor )
+repulsion posA posB = (epsilon * 48.0 * sigma12 / divisor ) *^ r
   where
     divisor = (norm r)^14
     r = posB ^-^ posA
@@ -339,7 +337,7 @@ repulsion posA posB = r ^* (epsilon * 12.0 * sigma12 / divisor )
 -- Attraction term of the [Lennard-Jones
 -- potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential)
 attraction :: Position -> Position -> Force
-attraction posA posB = r ^* (epsilon * 6.0 * sigma6 / divisor )
+attraction posA posB = (epsilon * 24.0 * sigma6 / divisor ) *^ r
   where
     divisor = (norm r)^8
     r = posB ^-^ posA
@@ -377,15 +375,15 @@ updateVelocities dt = zipWith (updateVelocity dt)
 --
 
 -- |
--- Same as `mainVerlet` but with a square lattice of \(8 \times 8\) `Particle`s
+-- Same as `mainVerlet` but with a square lattice of \(4 \times 4\) `Particle`s
 mainVerletSquare :: IO ()
 mainVerletSquare = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
-    initialModel = squareLatticeModel 8
+    initialModel = squareLatticeModel 4
 
     drawingFunc :: Model -> Picture
-    drawingFunc = pictures . (:) drawWalls . drawParticles
+    drawingFunc = pictures . (:) drawWalls . fmap drawParticle
 
     updateFunc :: ViewPort -> Float -> Model -> Model
     updateFunc _ dt = verletStep dt
@@ -432,17 +430,17 @@ latticeRow dim acc yPos = V2 xPos yPos : latticeRow dim (acc-1) yPos
 --
 
 -- |
--- Same as `mainVerlet` but with 24 random generated `Particle`s
+-- Same as `mainVerlet` but with 16 random generated `Particle`s
 mainVerletRandom :: IO ()
 mainVerletRandom = do
   seed <- newStdGen
   simulate windowDisplay white simulationRate (initialModel seed) drawingFunc updateFunc
     where
       initialModel :: RandomGen g => g -> Model
-      initialModel = modelRandom 24
+      initialModel = modelRandom 16
 
       drawingFunc :: Model -> Picture
-      drawingFunc = pictures . (:) drawWalls . drawParticles
+      drawingFunc = pictures . (:) drawWalls . fmap drawParticle
 
       updateFunc :: ViewPort -> Float -> Model -> Model
       updateFunc _ dt = verletStep dt
