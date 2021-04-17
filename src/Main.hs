@@ -18,7 +18,7 @@ import           System.Random
 --
 -- to perform the according simulation
 main :: IO ()
-main = mainVerletSquare
+main = mainVerletRandom
 
 -- * Types and data constructors
 
@@ -40,6 +40,10 @@ type Index = Int
 -- |
 -- Represents the force vector \(\vec{F}\) as a two-dimensional vector
 type Force = V2 Float
+
+-- |
+-- Represents the acceleration vector \(\vec{a}\) as a two-dimensional vector
+type Acceleration = V2 Float
 
 -- |
 -- Represents the time step in the simulation \( (\Delta t) \)
@@ -344,23 +348,23 @@ attraction posA posB = (epsilon * 24.0 * sigma6 / divisor ) *^ r
 
 -- |
 -- Update the position/velocity of __one__ `Particle`
-updatePosition, updateVelocity :: TimeStep -> Particle -> Force -> Particle
-updatePosition dt (Particle idx pos vel) force = Particle idx newPos vel
+updatePosition, updateVelocity :: TimeStep -> Particle -> Acceleration -> Particle
+updatePosition dt (Particle idx pos vel) acc = Particle idx newPos vel
   where
-   newPos  = pos   ^+^ velPart ^+^ accPart
-   velPart = vel   ^* dt
-   accPart = force ^* (0.5 * dt**2)
+   newPos  = pos ^+^ velPart ^+^ accPart
+   velPart = vel ^* dt
+   accPart = acc ^* (0.5 * dt**2)
 
-updateVelocity dt particle force = Particle idx pos vel'
+updateVelocity dt particle acc = Particle idx pos vel'
   where
     (Particle idx pos vel) = particle
     transVec = boundaryCondition particle
-    vel' = transVec * (vel + (0.5 * dt) *^ force)
+    vel' = transVec * (vel + (0.5 * dt) *^ acc)
 
 -- |
 -- Apply `updatePosition`/`updateVelocity` to
 -- __all__ (list/set) `Particle`s
-updatePositions, updateVelocities :: TimeStep -> [Particle] -> [Force] -> [Particle]
+updatePositions, updateVelocities :: TimeStep -> [Particle] -> [Acceleration] -> [Particle]
 updatePositions  dt = zipWith (updatePosition dt)
 updateVelocities dt = zipWith (updateVelocity dt)
 
@@ -437,7 +441,7 @@ mainVerletRandom = do
   simulate windowDisplay white simulationRate (initialModel seed) drawingFunc updateFunc
     where
       initialModel :: RandomGen g => g -> Model
-      initialModel = modelRandom 16
+      initialModel = modelRandom 25
 
       drawingFunc :: Model -> Picture
       drawingFunc = pictures . (:) drawWalls . fmap drawParticle
