@@ -441,7 +441,7 @@ mainVerletRandom = do
   simulate windowDisplay white simulationRate (initialModel seed) drawingFunc updateFunc
     where
       initialModel :: RandomGen g => g -> Model
-      initialModel = modelRandom 25
+      initialModel = modelRandom 16
 
       drawingFunc :: Model -> Picture
       drawingFunc = pictures . (:) drawWalls . fmap drawParticle
