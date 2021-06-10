@@ -401,6 +401,7 @@ mainVerletSquare = simulate windowDisplay white simulationRate initialModel draw
 -- |
 -- Function to construct a [square lattice](https://en.wikipedia.org/wiki/Square_lattice)
 -- of dimension \(n \times n\)
+squareLatticeModel :: Int -> [Particle]
 squareLatticeModel n = zipWith3 Particle idxs poss vels
   where
     idxs = [1..(n^2)]
