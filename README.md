@@ -1,8 +1,8 @@
 # Molecular Dynamics in Haskell
 
 This is a Haskell implementation of the Verlet-Velocity algorithm in a molecular dynamics
-framework.
-See the [this]() blog post for more information (not published yet).
+framework for my [blog
+post](https://mkdoku.github.io/posts/2021-06-19-molecular-dynamics.html).
 
 ## Install
 
