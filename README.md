@@ -4,7 +4,21 @@ This is a Haskell implementation of the Verlet-Velocity algorithm in a molecular
 framework for my [blog
 post](https://mkdoku.github.io/posts/2021-06-19-molecular-dynamics.html).
 
-## Install
+## Pre-requisite Installations
+
+Use  Ghcup  to install GHC, cabal-install, Stack and haskell-language-server from [here](https://www.haskell.org/ghcup/)
+
+Additional Installation for Windows:
+
+- Download the freeglut windows development libraries from [here](https://www.transmissionzero.co.uk/software/freeglut-devel/)
+- Add freeglut/bin/x64/ to your executable path.   
+
+
+## To Install Molecular Dyanmics
+
+```bash
+cd <path-to-MolecularDynamics-folder>
+```
 
 ```bash
 stack install
