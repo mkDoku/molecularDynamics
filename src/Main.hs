@@ -77,10 +77,10 @@ dotSize = 0.1
 -- |
 -- Window display config
 --
--- Show a 800x800 window at the window coordinate (200, 800) with the title "MD in
+-- Show a 800x800 window at the window coordinate (0, 0) with the title "MD in
 -- Haskell"
 windowDisplay :: Display
-windowDisplay = InWindow "MD in Haskell" (800, 800) (200, 800)
+windowDisplay = InWindow "MD in Haskell" (800, 800) (0, 0)
 
 -- |
 -- Number of frames per second
