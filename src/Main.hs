@@ -1,6 +1,6 @@
 module Main where
 
-import           Graphics.Gloss
+import qualified Graphics.Gloss as  GG
 import           Graphics.Gloss.Data.ViewPort
 import           Linear.Metric
 import           Linear.V2
@@ -79,8 +79,8 @@ dotSize = 0.1
 --
 -- Show a 800x800 window at the window coordinate (0, 0) with the title "MD in
 -- Haskell"
-windowDisplay :: Display
-windowDisplay = InWindow "MD in Haskell" (800, 800) (0, 0)
+windowDisplay :: GG.Display
+windowDisplay = GG.InWindow "MD in Haskell" (800, 800) (0, 0)
 
 -- |
 -- Number of frames per second
@@ -119,13 +119,13 @@ bLength = 7
 -- This results in a `Particle` moving from the center of the
 -- screen to the right:
 mainNewton :: IO ()
-mainNewton = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
+mainNewton = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
     initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0)]
 
-    drawingFunc :: Model -> Picture
-    drawingFunc = pictures . fmap drawParticle
+    drawingFunc :: Model -> GG.Picture
+    drawingFunc = GG.pictures . fmap drawParticle
 
     updateFunc :: ViewPort -> TimeStep -> Model -> Model
     updateFunc _ dt = newton dt
@@ -139,14 +139,14 @@ mainNewton = simulate windowDisplay white simulationRate initialModel drawingFun
 -- |
 -- Visualize a single `Particle` as blue dot
 -- by transforming the `Position` of the `Particle` into
--- a `Picture`, which can be rendered
-drawParticle :: Particle -> Picture
+-- a `GG.Picture`, which can be rendered
+drawParticle :: Particle -> GG.Picture
 drawParticle (Particle _ (V2 x y) _) =
-  translate x' y' $ color (circleSolid $ toPixels dotSize)
+  GG.translate x' y' $ color (GG.circleSolid $ toPixels dotSize)
   where
     x' = toPixels x
     y' = toPixels y
-    color = Color (withAlpha 0.8 blue)
+    color = GG.Color (GG.withAlpha 0.8 GG.blue)
 
 -- |
 -- Update velocity of one `Particle`
@@ -171,13 +171,13 @@ newton dt [Particle idx pos vel] = [Particle idx pos' vel]
 -- This results in a `Particle` moving from the center of the
 -- screen to the right and will bounce of the wall:
 mainNewtonBounce :: IO ()
-mainNewtonBounce = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
+mainNewtonBounce = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
     initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0)]
 
-    drawingFunc :: Model -> Picture
-    drawingFunc = pictures . (:) drawWalls . fmap drawParticle
+    drawingFunc :: Model -> GG.Picture
+    drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
 
     updateFunc :: ViewPort -> Float -> Model -> Model
     updateFunc _ dt = newtonBounce dt
@@ -189,9 +189,9 @@ mainNewtonBounce = simulate windowDisplay white simulationRate initialModel draw
 -- |
 
 -- |
--- A `Picture` of the wall surrounding the `Particle` ("simulation box")
-drawWalls :: Picture
-drawWalls = lineLoop $ rectanglePath (toPixels aLength) (toPixels bLength)
+-- A `GG.Picture` of the wall surrounding the `Particle` ("simulation box")
+drawWalls :: GG.Picture
+drawWalls = GG.lineLoop $ GG.rectanglePath (toPixels aLength) (toPixels bLength)
 
 -- |
 -- Updated `newton` function, which incorporates bouncing of the wall (see
@@ -232,14 +232,14 @@ boundaryCondition (Particle _ (V2 x y) _)
 -- potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential)
 -- of two `Particle`s. They attract and repulse each other.
 mainVerlet :: IO ()
-mainVerlet = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
+mainVerlet = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
     initialModel = [ Particle 1 (V2   0.3  0.0) (V2   0.0  0.0)
                    , Particle 2 (V2 (-0.3) 0.0) (V2 (-0.0) 0.0) ]
 
-    drawingFunc :: Model -> Picture
-    drawingFunc = pictures . (:) drawWalls . fmap drawParticle
+    drawingFunc :: Model -> GG.Picture
+    drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
 
     updateFunc :: ViewPort -> Float -> Model -> Model
     updateFunc _ dt = verletStep dt
@@ -381,13 +381,13 @@ updateVelocities dt = zipWith (updateVelocity dt)
 -- |
 -- Same as `mainVerlet` but with a square lattice of \(4 \times 4\) `Particle`s
 mainVerletSquare :: IO ()
-mainVerletSquare = simulate windowDisplay white simulationRate initialModel drawingFunc updateFunc
+mainVerletSquare = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
     initialModel = squareLatticeModel 4
 
-    drawingFunc :: Model -> Picture
-    drawingFunc = pictures . (:) drawWalls . fmap drawParticle
+    drawingFunc :: Model -> GG.Picture
+    drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
 
     updateFunc :: ViewPort -> Float -> Model -> Model
     updateFunc _ dt = verletStep dt
@@ -439,13 +439,13 @@ latticeRow dim acc yPos = V2 xPos yPos : latticeRow dim (acc-1) yPos
 mainVerletRandom :: IO ()
 mainVerletRandom = do
   seed <- newStdGen
-  simulate windowDisplay white simulationRate (initialModel seed) drawingFunc updateFunc
+  GG.simulate windowDisplay GG.white simulationRate (initialModel seed) drawingFunc updateFunc
     where
       initialModel :: RandomGen g => g -> Model
       initialModel = modelRandom 16
 
-      drawingFunc :: Model -> Picture
-      drawingFunc = pictures . (:) drawWalls . fmap drawParticle
+      drawingFunc :: Model -> GG.Picture
+      drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
 
       updateFunc :: ViewPort -> Float -> Model -> Model
       updateFunc _ dt = verletStep dt
