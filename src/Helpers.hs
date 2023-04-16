@@ -129,55 +129,6 @@ boundaryCondition (Particle _ (V2 x y) _)
      y' = abs y + dotSize
 
 -- |
-
---
-
--- ** Third simulation
-
---
-
--- |
--- First simulation using the [Velocity Verlet
--- algorithm](https://en.wikipedia.org/wiki/Verlet_integration#Velocity_Verlet)
--- and the [Lennard-Jones
--- potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential)
--- of two `Particle`s. They attract and repulse each other.
-mainVerlet :: IO ()
-mainVerlet = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
-  where
-    initialModel :: Model
-    initialModel = [ Particle 1 (V2   0.3  0.0) (V2   0.0  0.0)
-                   , Particle 2 (V2 (-0.3) 0.0) (V2 (-0.0) 0.0) ]
-
-    drawingFunc :: Model -> GG.Picture
-    drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
-
-    updateFunc :: ViewPort -> Float -> Model -> Model
-    updateFunc _ dt = verletStep dt
-
--- |
-
--- *** Additional helper functions
-
--- |
-
--- |
--- Implementation of the [Velocity Verlet
--- algorithm](https://en.wikipedia.org/wiki/Verlet_integration#Velocity_Verlet) (without
--- the half-step)
-verletStep :: TimeStep -> Model -> Model
-verletStep dt particles =
-  let
-     oldF     = calcForces particles
-     oldA     = fmap (^/ m) oldF
-     newPos   = updatePositions dt particles oldA
-     newF     = calcForces newPos
-     newA     = fmap (^/ m) newF
-     addedF   = oldA ^+^ newA
-     newParts = updateVelocities dt newPos addedF
-  in newParts
-
--- |
 -- Mass of all our `Particle`s
 m :: Float
 m = 18
@@ -283,28 +234,6 @@ updateVelocities dt = zipWith (updateVelocity dt)
 
 -- |
 
---
-
--- ** Fourth simulation
-
---
-
--- |
--- Same as `mainVerlet` but with a square lattice of \(4 \times 4\) `Particle`s
-mainVerletSquare :: IO ()
-mainVerletSquare = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
-  where
-    initialModel :: Model
-    initialModel = squareLatticeModel 4
-
-    drawingFunc :: Model -> GG.Picture
-    drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
-
-    updateFunc :: ViewPort -> Float -> Model -> Model
-    updateFunc _ dt = verletStep dt
-
--- |
-
 -- *** Additional helper functions
 
 -- |
@@ -339,27 +268,6 @@ latticeRow dim acc yPos = V2 xPos yPos : latticeRow dim (acc-1) yPos
     dx   = aLength / fromIntegral (dim+1)
     xPos = aLength/2 - (fromIntegral acc * dx)
 
--- |
-
--- ** Fourth simulation
-
---
-
--- |
--- Same as `mainVerlet` but with 16 random generated `Particle`s
-mainVerletRandom :: IO ()
-mainVerletRandom = do
-  seed <- newStdGen
-  GG.simulate windowDisplay GG.white simulationRate (initialModel seed) drawingFunc updateFunc
-    where
-      initialModel :: RandomGen g => g -> Model
-      initialModel = modelRandom 16
-
-      drawingFunc :: Model -> GG.Picture
-      drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
-
-      updateFunc :: ViewPort -> Float -> Model -> Model
-      updateFunc _ dt = verletStep dt
 
 -- |
 
