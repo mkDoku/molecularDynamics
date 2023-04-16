@@ -1,11 +1,13 @@
 module Main where
 
-import           Helpers ( mainNewton
-                         , mainNewtonBounce
-                         , mainVerlet
+import           Helpers ( mainVerlet
                          , mainVerletSquare
                          , mainVerletRandom
                          )
+
+import           Newton ( mainNewton
+                        , mainNewtonBounce
+                        )
 
 -- |
 -- Select the main function of your choice
@@ -18,4 +20,4 @@ import           Helpers ( mainNewton
 --
 -- to perform the according simulation
 main :: IO ()
-main = mainVerletRandom
+main = mainNewtonBounce
