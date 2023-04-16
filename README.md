@@ -14,7 +14,7 @@ Additional Installation for Windows:
 - Add freeglut/bin/x64/ to your executable path.   
 
 
-## To Install Molecular Dyanmics
+## To Install Molecular Dynamics
 
 ```bash
 cd <path-to-MolecularDynamics-folder>
@@ -22,6 +22,11 @@ cd <path-to-MolecularDynamics-folder>
 
 ```bash
 stack install
+```
+### Nix
+
+```bash
+nix-build release.nix
 ```
 
 ## Run examples
