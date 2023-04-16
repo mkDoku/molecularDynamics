@@ -1,5 +1,6 @@
 module Main where
 
+import           Data.List (zipWith4)
 import qualified Graphics.Gloss as  GG
 import           Graphics.Gloss.Data.ViewPort
 import           Linear.Metric
@@ -56,7 +57,8 @@ type TimeStep = Float
 data Particle = Particle
   { idx :: Index,
     pos :: Position,
-    vel :: Velocity
+    vel :: Velocity,
+    col :: GG.Color
   }
 
 instance Eq Particle where
@@ -122,7 +124,7 @@ mainNewton :: IO ()
 mainNewton = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
-    initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0)]
+    initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0) GG.blue]
 
     drawingFunc :: Model -> GG.Picture
     drawingFunc = GG.pictures . fmap drawParticle
@@ -141,18 +143,18 @@ mainNewton = GG.simulate windowDisplay GG.white simulationRate initialModel draw
 -- by transforming the `Position` of the `Particle` into
 -- a `GG.Picture`, which can be rendered
 drawParticle :: Particle -> GG.Picture
-drawParticle (Particle _ (V2 x y) _) =
+drawParticle (Particle _ (V2 x y) _ col) =
   GG.translate x' y' $ color (GG.circleSolid $ toPixels dotSize)
   where
     x' = toPixels x
     y' = toPixels y
-    color = GG.Color (GG.withAlpha 0.8 GG.blue)
+    color = GG.Color (GG.withAlpha 0.8 col)
 
 -- |
 -- Update velocity of one `Particle`
 -- assuming no acceleration
 newton :: TimeStep -> [Particle] -> [Particle]
-newton dt [Particle idx pos vel] = [Particle idx pos' vel]
+newton dt [Particle idx pos vel col] = [Particle idx pos' vel col]
   where
     pos' = pos + vel ^* dt
 
@@ -174,7 +176,7 @@ mainNewtonBounce :: IO ()
 mainNewtonBounce = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
-    initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0)]
+    initialModel = [Particle 1 (V2 0.0 0.0) (V2 1.0 0.0) GG.blue]
 
     drawingFunc :: Model -> GG.Picture
     drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
@@ -197,7 +199,7 @@ drawWalls = GG.lineLoop $ GG.rectanglePath (toPixels aLength) (toPixels bLength)
 -- Updated `newton` function, which incorporates bouncing of the wall (see
 -- `boundaryCondition`)
 newtonBounce :: Float -> [Particle] -> [Particle]
-newtonBounce dt [particle@(Particle idx pos vel)] = [Particle idx pos' vel']
+newtonBounce dt [particle@(Particle idx pos vel col)] = [Particle idx pos' vel' col]
   where
     transVec = boundaryCondition particle
     vel' = transVec * vel
@@ -208,7 +210,7 @@ newtonBounce dt [particle@(Particle idx pos vel)] = [Particle idx pos' vel']
 -- is close (current `Position` + radius of the particle) to a wall in x,
 -- y or (x and y) direction.
 boundaryCondition :: Particle -> V2 Float
-boundaryCondition (Particle _ (V2 x y) _)
+boundaryCondition (Particle _ (V2 x y) _ _)
   | (x' > aLength/2) && (y' > bLength/2) = V2 (-1) (-1)
   |  x' > aLength/2                      = V2 (-1)   1
   |  y' > bLength/2                      = V2   1  (-1)
@@ -235,8 +237,8 @@ mainVerlet :: IO ()
 mainVerlet = GG.simulate windowDisplay GG.white simulationRate initialModel drawingFunc updateFunc
   where
     initialModel :: Model
-    initialModel = [ Particle 1 (V2   0.3  0.0) (V2   0.0  0.0)
-                   , Particle 2 (V2 (-0.3) 0.0) (V2 (-0.0) 0.0) ]
+    initialModel = [ Particle 1 (V2   0.3  0.0) (V2   0.0  0.0) GG.blue
+                   , Particle 2 (V2 (-0.3) 0.0) (V2 (-0.0) 0.0) GG.green ]
 
     drawingFunc :: Model -> GG.Picture
     drawingFunc = GG.pictures . (:) drawWalls . fmap drawParticle
@@ -349,15 +351,15 @@ attraction posA posB = (epsilon * 24.0 * sigma6 / divisor ) *^ r
 -- |
 -- Update the position/velocity of __one__ `Particle`
 updatePosition, updateVelocity :: TimeStep -> Particle -> Acceleration -> Particle
-updatePosition dt (Particle idx pos vel) acc = Particle idx newPos vel
+updatePosition dt (Particle idx pos vel col) acc = Particle idx newPos vel col
   where
    newPos  = pos ^+^ velPart ^+^ accPart
    velPart = vel ^* dt
    accPart = acc ^* (0.5 * dt**2)
 
-updateVelocity dt particle acc = Particle idx pos vel'
+updateVelocity dt particle acc = Particle idx pos vel' col
   where
-    (Particle idx pos vel) = particle
+    (Particle idx pos vel col) = particle
     transVec = boundaryCondition particle
     vel' = transVec * (vel + (0.5 * dt) *^ acc)
 
@@ -402,11 +404,14 @@ mainVerletSquare = GG.simulate windowDisplay GG.white simulationRate initialMode
 -- Function to construct a [square lattice](https://en.wikipedia.org/wiki/Square_lattice)
 -- of dimension \(n \times n\)
 squareLatticeModel :: Int -> [Particle]
-squareLatticeModel n = zipWith3 Particle idxs poss vels
+squareLatticeModel n = zipWith4 Particle idxs poss vels cols
   where
-    idxs = [1..(n^2)]
+    n_squared = n^2
+    idxs = [1..(n_squared)]
     poss = squareLattice n n
-    vels = replicate (n^2) (V2 0.0 0.0)
+    vels = replicate n_squared (V2 0.0 0.0)
+    cols =    replicate (div n_squared 2) (GG.blue)
+           ++ replicate (div n_squared 2 + mod n_squared 2) (GG.green)
 
 -- |
 -- Constructs the [square lattice](https://en.wikipedia.org/wiki/Square_lattice)
@@ -459,12 +464,13 @@ mainVerletRandom = do
 -- |
 -- Generates \(n\) random `Particle`s (random `Position` and `Velocity`).
 modelRandom :: RandomGen g => Int -> g -> [Particle]
-modelRandom n g = zipWith3 Particle idxs poss vels
+modelRandom n g = zipWith4 Particle idxs poss vels cols
   where
     idxs = [1..n]
     (g', g'') = split g
     poss = randomPos n g'
     vels = randomVel n g''
+    cols = replicate (div n 2) GG.blue ++ replicate (div n 2 + mod n 2) GG.green
 
 -- |
 -- Generates \(n\) random `Velocity` values
